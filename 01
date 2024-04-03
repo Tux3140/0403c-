@@ -1,0 +1,67 @@
+#include <iostream>
+using namespace std;
+enum CPU_Rank{p1=1,p2,p3,p4,p5,p6,p7};
+
+class CPU {
+
+	CPU_Rank rank;
+	int frequency;
+	double voltage;
+
+public:
+	CPU(CPU_Rank rank = p1, int frequency = 2, double voltage = 100.0)
+		:rank(rank), frequency(frequency), voltage(voltage) {
+		cout << "create a cpu" << endl;
+	}
+
+	CPU(const CPU& c) {
+		rank = c.rank;
+		frequency = c.frequency;
+		voltage = c.voltage;
+	}
+
+	void run() {
+		cout << "the cpu is running" << endl;
+	}
+
+	void stop() {
+		cout << "the cpu is stopping" << endl;
+	}
+
+	~CPU() {
+		cout << "destruct the CPU" << endl;
+	}
+
+	void showinfo() {
+		cout << "rank:" << rank << endl;
+		cout << "frequency:" << frequency << endl;
+		cout << "voltage:" << voltage << endl;
+	}
+
+};
+
+int main() {
+
+	CPU a(p2, 200,600.999);
+	cout << "---------------------------" << endl;
+	cout << "the cpu a :" << endl;
+	a.showinfo();
+	a.run();
+	a.stop();
+
+	CPU b ;
+	cout << "---------------------------" << endl;
+	cout << "the cpu b :" << endl;
+	b.showinfo();
+	b.run();
+	b.stop();
+
+	CPU c(a);
+	cout << "---------------------------" << endl;
+	cout << "the cpu c:" << endl;
+	c.showinfo();
+	c.run();
+	c.stop();
+
+	return 0;
+}
