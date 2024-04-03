@@ -1,0 +1,78 @@
+#include<iostream>
+#include<string.h>
+using namespace std;
+
+class Date {
+	int year;
+	int month;
+	int day;
+
+public:
+
+	Date() {}
+	Date(int x,int y, int z){
+		year = x;
+		month = y;
+		day = z;
+	}
+	void set(int x,int y,int z) {
+		year = x;
+		month = y;
+		day = z;
+	}
+	
+	void display() {
+		cout << year << "年" << month << "月" << day << "日" << endl;
+	}
+};
+
+class People {
+private:
+	int number;
+	char gender;
+	Date birthday;
+	char ID[20];
+
+public:
+	People(){}
+	People(const People& p) {
+		number = p.number;
+		gender = p.gender;
+		birthday = p.birthday;
+		strcpy(ID, p.ID);
+	}
+
+	void input() {
+		cout << "enter number:" << endl;
+		cin >> number;
+		cout << "enter gender:" << endl;
+		cin >> gender;
+		int y, m, d;
+		cout << "enter year,month,day:" << endl;
+		cin >> y>>m>> d;
+		birthday.set(y, m, d);
+		cout << "enter ID:" << endl;
+		cin >> ID;
+		ID[18] = '\0';
+	}
+
+	void output() {
+		cout << "number:" << number << endl;
+		cout << "gender:" << gender << endl;
+		cout << "birthday:" << endl;
+		birthday.display();
+		cout << endl;
+		cout << "ID:" << ID << endl;
+	}
+
+	~People() {
+
+	}
+};
+
+int main() {
+	People Gao;
+	Gao.input();
+	Gao.output();
+	return 0;
+}
